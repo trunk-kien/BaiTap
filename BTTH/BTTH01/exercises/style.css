@@ -51,61 +51,32 @@ nav a {
     transition: color 0.3s ease;
 }
 
-/*hover effect cho nav link*/
-nav a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: #6366f1;
-    transition: width 0.3s ease;
-}
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
 
-nav a:hover {
-    color: #6366f1;
-}
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
 
-nav a:hover::after {
-    width: 100%;
-}
+    nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #f8fafc;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        padding: 1.5rem 0;
+        text-align: center;
+        gap: 1.5rem;
+    }
 
-.menu-toggle, .hamburger {
-    display: none;
-}
-
-.hero {
-    min-width: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    
-    background: linear-gradient(135deg, rgba(248,250,252,1), rgba(226,232,240,1) 100%);
-    padding: 0 ;
-}
-
-.hero h1 {
-    font-size: 3.5rem;
-    color: #1e293b;
-    margin-bottom: 1rem;
-}
-
-.hero p {
-    font-size: 1.25rem;
-    margin-bottom: 2.5rem;
-}
-
-/*Cta button vs hover effect*/
-.cta-button {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    background-color: #6366f1;
-    color: #fff;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: bold;
-    
+    /*checkbox hack*/
+    .menu-toggle:checked ~ nav {
+        display: flex;
+    }
 }
