@@ -34,7 +34,7 @@ Câu A1:
             }
         
     -   Cách 2: desktop-first
-    
+
             .sidebar {
                 display: block;
                 width: 250px;
@@ -234,7 +234,7 @@ Câu C2:
 
 ### CSS skeleton
 1. MOBILE-FIRST 
-
+```text
     .restaurant-page {
         display: grid;
         grid-template-columns: 1fr;
@@ -260,10 +260,10 @@ Câu C2:
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
-
+```
 
 2. TABLET BREAKPOINT 
-
+```text
     @media (min-width: 768px) {
         
         .restaurant-page {
@@ -286,10 +286,10 @@ Câu C2:
             grid-template-columns: repeat(3, 1fr);
         }
     }
-
+```
 
 3. DESKTOP BREAKPOINT 
-
+```text
     @media (min-width: 1024px) {
         
         .restaurant-page {
@@ -316,3 +316,4 @@ Câu C2:
             grid-template-columns: repeat(3, 1fr);
         }
     }
+```
