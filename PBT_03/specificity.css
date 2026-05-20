@@ -1,0 +1,29 @@
+/* 1. Specificity: (0, 0, 1) */
+p { color: gray; }
+
+/* 2. Specificity: (0, 0, 2) */
+body p { color: pink; }
+
+/* 3. Specificity: (0, 1, 0) */
+.text { color: brown; }
+
+/* 4. Specificity: (0, 1, 1) */
+p.text { color: purple; }
+
+/* 5. Specificity: (0, 1, 2) */
+body p.text { color: orange; }
+
+/* 6. Specificity: (0, 2, 0) */
+.text.highlight { color: yellow; }
+
+/* 7. Specificity: (0, 2, 1) */
+p.text.highlight { color: blue; }
+
+/* 8. Specificity: (1, 0, 0) */
+#demo { color: green; }
+
+/* 9. Specificity: (1, 0, 1) */
+p#demo { color: aqua; }
+
+/* 10. Specificity: (1, 2, 1) */
+p#demo.text.highlight { color: red; }
