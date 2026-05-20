@@ -3,7 +3,7 @@
 Câu A1:
 -   Inline CSS:
     -   VD:
-        ```text<p style="color: red; font-size: 16px;">Đoạn văn này có màu đỏ.</p>```
+        ```<p style="color: red; font-size: 16px;">Đoạn văn này có màu đỏ.</p>```
 -   Ưu điểm:
         -   Cực kỳ nhanh chóng để áp dụng hoặc thử nghiệm một style trực tiếp.
         -   Có độ ưu tiên rất cao, dễ dàng ghi đè các style từ Internal hoặc External CSS.
@@ -18,7 +18,7 @@ Câu A1:
 
 -   Internal CSS:
     -   VD:
-            ```text
+        ```text
                 <!DOCTYPE html>
                 <html>
                 <head>
@@ -33,7 +33,7 @@ Câu A1:
                     <p>Đoạn văn này có màu xanh và in đậm.</p>
                 </body>
                 </html>
-            ```
+        ```
 
 -   Ưu điểm:
         -   Gom toàn bộ CSS về một chỗ (trong thẻ head), giúp HTML body sạch sẽ hơn so với Inline.
