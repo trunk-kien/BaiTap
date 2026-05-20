@@ -2,8 +2,8 @@
 
 Câu A1:
 -   Inline CSS:
-    VD:
-        <p style="color: red; font-size: 16px;">Đoạn văn này có màu đỏ.</p>
+    -   VD:
+        ```text<p style="color: red; font-size: 16px;">Đoạn văn này có màu đỏ.</p>```
 -   Ưu điểm:
         -   Cực kỳ nhanh chóng để áp dụng hoặc thử nghiệm một style trực tiếp.
         -   Có độ ưu tiên rất cao, dễ dàng ghi đè các style từ Internal hoặc External CSS.
@@ -17,34 +17,38 @@ Câu A1:
 
 
 -   Internal CSS:
-    VD:
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <style>
-                p {
-            color: blue;
-            font-weight: bold;
-        }
-            </style>
-        </head>
-        <body>
-            <p>Đoạn văn này có màu xanh và in đậm.</p>
-        </body>
-        </html>
+    -   VD:
+            ```text
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <style>
+                        p {
+                    color: blue;
+                    font-weight: bold;
+                }
+                    </style>
+                </head>
+                <body>
+                    <p>Đoạn văn này có màu xanh và in đậm.</p>
+                </body>
+                </html>
+            ```
+
 -   Ưu điểm:
-        -   Gom toàn bộ CSS về một chỗ (trong thẻ <head>), giúp HTML body sạch sẽ hơn so với Inline.
+        -   Gom toàn bộ CSS về một chỗ (trong thẻ head), giúp HTML body sạch sẽ hơn so với Inline.
         -   Chỉ áp dụng cho trang HTML hiện tại, không ảnh hưởng đến các trang khác.
         -   Không tốn thêm request HTTP để tải file CSS bên ngoài.
 -   Nhược điểm:
-        -   Vẫn không tái sử dụng được cho các file HTML khác. Nếu có 10 trang web cần style giống nhau, bạn phải copy/paste đoạn <style> này 10 lần.
+        -   Vẫn không tái sử dụng được cho các file HTML khác. Nếu có 10 trang web cần style giống nhau, phải copy/paste đoạn thẻ style này 10 lần.
         -   Làm tăng dung lượng của file HTML.
 -   Khi nào nên dùng:
         -   Khi tạo 1 landing page đơn giản có 1 trang duy nhất
         -   Khi trang web có một số style đặc thù không thể chia sẻ với bất kỳ trang nào khác trong hệ thống.
 
 -   External CSS:
-    VD:
+    -   VD:
+        ```text
         trong file index.html:
             <head>
                 <link rel="stylesheet" href="styles.css">
@@ -54,6 +58,7 @@ Câu A1:
                 color: green;
                 text-align: center;
             }
+        ```
 -   Ưu điểm:
         -   Tách biệt hoàn toàn giữa cấu trúc (HTML) và định dạng (CSS). Code cực kỳ gọn gàng.
         -   Khả năng tái sử dụng. Một file css có thể được liên kết và dùng cho hàng trăm file html khác nhau.
@@ -66,42 +71,41 @@ Câu A1:
 -   Câu hỏi thêm:
     -   Nếu cùng 1 element có cả 3 cách CSS đồng thời áp dụng, Inline CSS sẽ "thắng"
     -   Vì:
-        Trong CSS có một quy tắc gọi là Độ ưu tiên (Specificity). Các quy tắc CSS sẽ được trình duyệt tính điểm để xem cái nào mạnh hơn:
+        -   Trong CSS có một quy tắc gọi là Độ ưu tiên (Specificity). Các quy tắc CSS sẽ được trình duyệt tính điểm để xem cái nào mạnh hơn:
                 -   Inline style (khai báo trực tiếp trong thẻ bằng thuộc tính style="...") có điểm số cao nhất. Nó áp đặt trực tiếp lên chính phần tử đó nên sẽ ghi đè mọi khai báo từ Internal và External.
-
-                -   Đối với Internal và External CSS, chúng có độ ưu tiên bằng nhau (nếu dùng cùng bộ chọn - selector). Trình duyệt sẽ áp dụng quy tắc Cascading (Xếp tầng): cái nào được khai báo/nhúng sau cùng (nằm ở vị trí thấp hơn trong thẻ <head>) thì cái đó sẽ thắng và ghi đè cái trước nó.
+                -   Đối với Internal và External CSS, chúng có độ ưu tiên bằng nhau (nếu dùng cùng bộ chọn - selector). Trình duyệt sẽ áp dụng quy tắc Cascading (Xếp tầng): cái nào được khai báo/nhúng sau cùng (nằm ở vị trí thấp hơn trong thẻ head) thì cái đó sẽ thắng và ghi đè cái trước nó.
 
 Câu A2:
 1. h1:
-    -   Chọn: thẻ <h1>
+    -   Chọn: thẻ `h1`
     -   Text content: ShopTLU
 
 2. .price:
-    -   Chọn: Tất cả các thẻ có class price
+    -   Chọn: Tất cả các thẻ có `class price`
     -   Text content: 25.990.000đ và 45.990.000đ
 
 3. #app header:
-    -   Chọn: Thẻ <header> nằm bên trong thẻ <div> có id là app
-    -   Text content: Toàn bộ nội dung bên trong header, bao gồm chữ "ShopTLU" và các thẻ link "Home", "Products", "About"
+    -   Chọn: Thẻ `header` nằm bên trong thẻ `div` có `id` là app
+    -   Text content: Toàn bộ nội dung bên trong `header`, bao gồm chữ "ShopTLU" và các thẻ `link` "Home", "Products", "About"
 
 4. nav a:first-child:
-    -   Chọn: Thẻ <a> đầu tiên trong thẻ <nav>
+    -   Chọn: Thẻ `a` đầu tiên trong thẻ `nav`
     -   Text content: Home
 
 5. .product.featured h2
-    -   Chọn: Thẻ <h2> nằm bên trong thẻ <article> có class là product và featured
+    -   Chọn: Thẻ `h2` nằm bên trong thẻ `article` có `class` là `product` và `featured`
     -   Text content: MacBook Pro
 
 6. article > p:
-    -   Chọn: Tất cả các thẻ <p> nằm trong thẻ <article>
+    -   Chọn: Tất cả các thẻ p nằm trong thẻ article
     -   Text content: 25.990.000đ, Mô tả sản phẩm..., 45.990.000đ, và Mô tả sản phẩm...
 
 7. a[href="/"]
-    -   Chọn: Thẻ <a> có thuộc tính href chính xác bằng /.
+    -   Chọn: Thẻ `a` có thuộc tính `href` chính xác bằng /.
     -   Text content: Home
 
 8. .top-bar.dark h1
-    -   Chọn: Thẻ <h1> nằm bên trong phần tử có đồng thời 2 class là top-bar và dark.
+    -   Chọn: Thẻ `h1` nằm bên trong phần tử có đồng thời 2 `class` là top-bar và dark.
 
     -   Text content: ShopTLU
 
@@ -121,10 +125,10 @@ Câu A3:
 
 Câu A4:
 1.  Tính specificity score (a, b, c) cho mỗi rule:
-    Rule A (p): (0, 0, 1) - có 1 thẻ HTML.
-    Rule B (.price): (0, 1, 0) - có 1 class.
-    Rule C (#main-price): (1, 0, 0) - có 1 ID.
-    ule D (p.price): (0, 1, 1) - có 1 thẻ HTML và 1 class.
+    -   Rule A (p): (0, 0, 1) - có 1 thẻ HTML.
+    -   Rule B (.price): (0, 1, 0) - có 1 class.
+    -   Rule C (#main-price): (1, 0, 0) - có 1 ID.
+    -   Rule D (p.price): (0, 1, 1) - có 1 thẻ HTML và 1 class.
 
 2.  Element sẽ có màu đỏ
     -   Vì khi so sánh điểm specificity, Rule C (1, 0, 0) có điểm số cao nhất nên nó "thắng" tất cả các rule còn lại.
@@ -133,7 +137,7 @@ Câu A4:
     -   Vì Inline style có độ ưu tiên cao hơn tất cả các ID, Class hay Element selectors ở file CSS ngoài.
 
 4.  Element sẽ có màu đen
-    -   Vì !important có sức mạnh cao nhất trong CSS.Nó bỏ qua mọi quy tắc tính điểm specificity thông thường kể cả inline style và bắt buộc trình duyệt phải áp dụng giá trị đó
+    -   Vì `!important` có sức mạnh cao nhất trong CSS.Nó bỏ qua mọi quy tắc tính điểm specificity thông thường kể cả inline style và bắt buộc trình duyệt phải áp dụng giá trị đó
 
 ### Phần B:
 
@@ -186,19 +190,19 @@ Câu C1:
             .content sửa thành: width: 598px;
 
 Câu C2:
-1. "Sản phẩm A" (h2) có font-size = 20px và color = green
+1. "Sản phẩm A" `h2` có font-size = 20px và color = green
 -   Giải thích:
         -   font-size: Phần tử này bị tác động bởi rule .card .title { font-size: 20px; }. Rule này target trực tiếp nên ghi đè các giá trị kế thừa từ .container (14px) hay body (16px)
         -   color: Có 3 rules ảnh hưởng đến màu là từ kế thừa của .card (blue), từ #featured .title (red), và .highlight (green !important). Mặc dù #featured .title có độ ưu tiên specificity cao hơn, nhưng rule .highlight có chứa cờ !important nên nó phá vỡ quy tắc xếp tầng (cascade) và giành quyền ưu tiên cao nhất, đổi màu thành green
 
 2. "Mô tả sản phẩm" (p trong card featured) có color = blue
 -   Giải thích: 
-        -   Phần tử <p> này bị tác động trực tiếp bởi rule .card p { color: inherit; }. Thuộc tính inherit bắt buộc phần tử này phải kế thừa giá trị color từ thẻ cha gần nhất của nó. Thẻ cha bao ngoài của nó là <div class="card" id="featured"> mang màu blue (từ rule .card { color: blue; }). Do đó, thẻ <p> cũng có màu blue
+        -   Phần tử `p` này bị tác động trực tiếp bởi rule .card p { color: inherit; }. Thuộc tính inherit bắt buộc phần tử này phải kế thừa giá trị color từ thẻ cha gần nhất của nó. Thẻ cha bao ngoài của nó là `div class="card" id="featured"` mang màu blue (từ rule .card { color: blue; }). Do đó, thẻ `p` cũng có màu blue
 
 3. "Sản phẩm B" (h2) có font-size = 20px và color = blue
 -   Giải thích:
         -   font-size: Tương tự câu 1, nó nhận giá trị trực tiếp từ rule .card .title { font-size: 20px; }.
-        -   color: Không có rule CSS nào target trực tiếp thuộc tính color của thẻ h2 này. Do quy tắc kế thừa (inheritance), nó sẽ lấy giá trị màu từ thẻ cha gần nhất có khai báo màu. Thẻ cha là .card có màu blue, nên h2 này kế thừa màu blue.
+        -   color: Không có rule CSS nào target trực tiếp thuộc tính color của thẻ `h2` này. Do quy tắc kế thừa (inheritance), nó sẽ lấy giá trị màu từ thẻ cha gần nhất có khai báo màu. Thẻ cha là .card có màu blue, nên `h2` này kế thừa màu blue.
 
 4. "Mô tả sản phẩm B" (p.highlight) có color = green
 -   Giải thích: 
