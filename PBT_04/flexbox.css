@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f5f7;
+}
+
+.navbar {
+    display: flex;
+    align-items: center; 
+    background-color: #111827;
+    color: white;
+    padding: 15px 40px;
+}
+
+.navbar .logo {
+    flex: 1; 
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.navbar .nav-links {
+    flex: 2;
+    display: flex;
+    justify-content: center; 
+    list-style: none;
+    gap: 30px; 
+}
+
+.navbar .nav-links a {
+    color: #d1d5db;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: #60a5fa;
+    text-decoration: underline;
+}
+
+.navbar .auth-buttons {
+    flex: 1; 
+    display: flex;
+    justify-content: flex-end; 
+    gap: 20px;
+}
+
+.navbar .auth-buttons a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.navbar .auth-buttons a:hover {
+    color: #60a5fa;
+    text-decoration: underline;
+}
+
+/* Phần 2 */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+}
+
+.card {
+    
+    flex: 0 0 calc(25% - 20px); 
+    
+    
+    display: flex;
+    flex-direction: column; 
+    
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.card .card-info h3 {
+    font-size: 16px;
+    color: #374151;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.card .card-info .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ef4444;
+    margin-bottom: 15px;
+}
+
+.card .btn-buy {
+    margin-top: auto;
+    
+    width: 100%;
+    padding: 10px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.card .btn-buy:hover {
+    background-color: #0033a0;
+}
