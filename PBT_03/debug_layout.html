@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug layout</title>
+    <link rel="stylesheet" href="debug_layout.css"
+</head>
+<body>
+    <h2>Cách 1: Sửa bằng box-sizing: border-box</h2>
+    <div class="container">
+        <div class="sidebar method-1">Sidebar</div>
+        <div class="content method-1">Content</div>
+    </div>
+
+    <h2>Cách 2: Sửa bằng cách tính toán lại Width thủ công (Content-box)</h2>
+    <div class="container">
+        <div class="sidebar method-2">Sidebar</div>
+        <div class="content method-2">Content</div>
+    </div>
+</body>
+</html>

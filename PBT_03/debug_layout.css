@@ -1,0 +1,36 @@
+.container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.sidebar {
+    padding: 20px;
+    border: 1px solid #ccc;
+    float: left;
+}
+
+.content {
+    padding: 30px;
+    border: 1px solid #ccc;
+    float: left;
+}
+
+/* Áp dụng Cách 1 */
+.sidebar.method-1 {
+    width: 300px;
+    box-sizing: border-box;
+}
+
+.content.method-1 {
+    width: 660px;
+    box-sizing: border-box;
+}
+
+/* Áp dụng Cách 2 */
+.sidebar.method-2 {
+    width: 258px;
+}
+
+.content.method-2 {
+    width: 598px;
+}
