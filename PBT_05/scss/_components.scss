@@ -1,0 +1,96 @@
+.header {
+    background-color: $secondary-color;
+    color: white;
+    padding: $spacing-md 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .hamburger {
+        font-size: 1.8rem;
+        cursor: pointer;
+        display: block;
+    }
+
+    .nav-menu {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #1f2937;
+        padding: 10px 0;
+        z-index: 10;
+
+        a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-bottom: 1px solid #374151;
+            
+            &:hover {
+                color: $primary-color;
+            }
+        }
+    }
+}
+
+#menu-toggle {
+    display: none; 
+    
+    &:checked ~ .nav-menu {
+        display: flex;
+    }
+}
+
+.card {
+    @include card-shadow;
+    padding: $spacing-md;
+    display: flex;
+    flex-direction: column;
+
+    img {
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    h4 {
+        margin-bottom: 5px;
+        font-size: 1.1rem;
+    }
+
+    .price {
+        color: #ef4444;
+        font-weight: bold;
+        margin-bottom: $spacing-md;
+    }
+
+    .btn {
+        margin-top: auto;
+        background: $primary-color;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        
+        &:hover {
+            background-color: darken($primary-color, 10%); 
+        }
+    }
+}
+
+.footer {
+    background-color: $secondary-color;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
