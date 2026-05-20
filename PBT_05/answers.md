@@ -20,6 +20,7 @@ Câu A1:
     VD CSS với breakpoint 768px:
 
     -   Cách 1: mobile-first
+
             .sidebar {
                 display: none; /* Ẩn sidebar trên điện thoại cho gọn */
                 width: 100%;
@@ -33,6 +34,7 @@ Câu A1:
             }
         
     -   Cách 2: desktop-first
+    
             .sidebar {
                 display: block;
                 width: 250px;
