@@ -45,3 +45,40 @@ Câu A2:
     -   Ở các màn hình nhỏ hơn `md` (dưới 768px), nó hoạt động giống như .`container-fluid` (chiếm 100% chiều rộng, không có lề hai bên).
 
     -   Khi màn hình đạt mốc `md` (từ 768px trở lên), nó bắt đầu hoạt động giống như `.container` bình thường (có `max-width` và thu lại vào giữa trang). Bootstrap hỗ trợ tương tự cho các mốc khác như .container-sm, .container-lg...
+
+### Phần C
+Câu C1:
+1.  Quy trình đổi màu `$primary` từ xanh mặc định sang `#E63946`
+-   Các công cụ cần thiết
+    -   Node.js & npm: Để cài đặt gói nguồn của Bootstrap (bootstrap).
+
+    -   Trình biên dịch SASS (Sass Compiler): Có thể dùng Extension Live Sass Compiler trên VS Code hoặc công cụ dòng lệnh sass cài qua npm để biên dịch file .scss thành file .css.
+
+    -   Mã nguồn Bootstrap: Được cài đặt vào thư mục dự án thông qua lệnh npm install bootstrap.
+
+-   Quy trình các bước thực hiện:
+```text
+// Bước 1: Import các hàm cấu trúc của Bootstrap trước
+@import "../node_modules/bootstrap/scss/functions";
+
+// Bước 2: Định nghĩa lại biến $primary với mã màu mới theo yêu cầu
+$primary: #E63946;
+
+// Bước 3: Import toàn bộ phần còn lại của Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
+```
+
+2.  Tại sao KHÔNG nên override trực tiếp `.btn-primary` mà nên dùng SASS variables?
+-   Làm mất tính đồng bộ của toàn bộ hệ thống giao diện (Ecosystem)
+-   Không tự động cập nhật các trạng thái (States) của phần tử
+-   Khó bảo trì và nâng cấp (Maintainability)
+
+Câu C2:
+| Tiêu chí | CSS Thuần (Pure CSS) | Bootstrap |
+| :--- | :--- | :--- |
+| **Số dòng CSS cần viết** | **Nhiều.** Phải tự viết toàn bộ các rules, từ layout (Flexbox/Grid), typography cho đến các Media Queries để xử lý responsive cho Navbar và Card. | **Rất ít.** Chủ yếu viết class trực tiếp vào HTML (utility classes, component classes). Chỉ viết thêm CSS custom khi cần tinh chỉnh nhỏ. |
+| **Thời gian phát triển** | **Lâu hơn.** Đòi hỏi thời gian căn chỉnh chi tiết, xử lý các luồng layout và tốn công test/debug cross-browser, cross-device từ con số 0. | **Rất nhanh.** Các component như Navbar, Card và hệ thống Grid đã được làm sẵn và test kỹ. Chỉ việc gọi class là có ngay giao diện chuẩn. |
+| **Khả năng tùy biến** | **Mức tối đa (100%).** Hoàn toàn làm chủ từng pixel, dễ dàng hiện thực hóa các bản thiết kế UI/UX độc đáo, phức tạp mà không sợ bị xung đột style. | **Hạn chế hơn.** Mặc định giao diện mang nặng "hơi hướng Bootstrap". Việc ghi đè (override) CSS mặc định để làm giao diện hoàn toàn khác biệt đôi khi vất vả hơn cả viết từ đầu. |
+| **Khi nào NÊN dùng** | - Khi dự án yêu cầu giao diện độc bản (pixel-perfect), animation phức tạp.<br>- Hệ thống lớn cần duy trì dài hạn, kiến trúc CSS riêng biệt.<br>- Cần tối ưu tối đa dung lượng tải trang, chỉ load những mã thực sự dùng. | - Cần ra mắt sản phẩm nhanh (MVP, Prototype).<br>- Xây dựng các trang Admin Dashboard, công cụ nội bộ không đòi hỏi UI quá đặc thù.<br>- Làm việc trong team cần một bộ quy chuẩn chung có sẵn. |
+| **Khi nào KHÔNG NÊN dùng** | - Dự án có deadline ngắn, cần tốc độ ra sản phẩm nhanh.<br>- Khi team không có người chuyên sâu về cắt HTML/CSS (ví dụ: team thuần Backend/Fullstack cần làm UI gấp). | - Bản thiết kế (Figma/Sketch) đi ngược lại hoàn toàn với design system của Bootstrap.<br>- Ứng dụng yêu cầu khắt khe về performance, không chấp nhận việc tải file CSS đồ sộ chứa nhiều mã thừa (unused CSS). |
+
