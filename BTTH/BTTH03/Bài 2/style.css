@@ -1,0 +1,270 @@
+:root {
+    --primary-color: #4a90e2;
+    --success-color: #2ecc71;
+    --warning-color: #f1c40f;
+    --danger-color: #e74c3c;
+    --text-color: #2c3e50;
+    --bg-color: #f5f7fa;
+    --card-bg: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 15px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #1a202c;
+}
+
+/* Nút bấm chung */
+.btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.btn-primary { background-color: var(--primary-color); color: white; }
+.btn-primary:hover { background-color: #357abd; }
+.btn-success { background-color: var(--success-color); color: white; width: 100%; }
+.btn-success:hover { background-color: #27ae60; }
+.btn-edit { background-color: var(--warning-color); color: #fff; margin-right: 5px; }
+.btn-edit:hover { background-color: #d4ac0d; }
+.btn-delete { background-color: var(--danger-color); color: white; }
+.btn-delete:hover { background-color: #c0392b; }
+
+/* Thống kê */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-label { font-size: 14px; color: #718096; }
+.stat-value { font-size: 20px; font-weight: bold; }
+.stat-value.completed { color: var(--success-color); }
+.stat-value.pending { color: var(--danger-color); }
+
+/* Danh sách công việc dạng Card */
+.task-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #a0aec0;
+    background: var(--card-bg);
+    border-radius: 8px;
+    border: 2px dashed #cbd5e0;
+}
+
+.task-card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.task-card.is-completed {
+    border-left-color: var(--success-color);
+    opacity: 0.75;
+}
+
+.task-card.is-completed .task-title-text {
+    text-decoration: line-through;
+    color: #a0aec0;
+}
+
+.task-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.task-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.task-title-text {
+    font-size: 18px;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.task-desc {
+    font-size: 14px;
+    color: #4a5568;
+    margin-bottom: 15px;
+    word-break: break-word;
+}
+
+.task-meta {
+    font-size: 12px;
+    color: #718096;
+    margin-bottom: 15px;
+}
+
+.task-meta div { margin-bottom: 4px; }
+
+.priority-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 11px;
+    background: #edf2f7;
+}
+
+.task-footer {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #edf2f7;
+    padding-top: 12px;
+}
+
+/* Popup Form (Modal) */
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.show { display: flex; }
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    position: relative;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #a0aec0;
+}
+.close-btn:hover { color: var(--danger-color); }
+
+.modal h2 { margin-bottom: 20px; font-size: 20px; }
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Toast Thông báo */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: -300px;
+    background: #333;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: right 0.3s ease;
+    z-index: 2000;
+}
+.toast.show { right: 20px; }
+.toast.success { background-color: var(--success-color); }
+
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+    min-height: 16px;
+}
+.form-group input.invalid, .form-group textarea.invalid {
+    border-color: #e74c3c;
+    background-color: #fff5f5;
+}
