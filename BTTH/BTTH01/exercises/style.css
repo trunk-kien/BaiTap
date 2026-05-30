@@ -497,3 +497,15 @@ textarea {
     border-top: 1px solid rgba(255,255,255,0.1);
     font-size: 0.875rem;
 }
+
+@media (max-width: 768px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr; 
+        gap: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr; 
+        gap: 1.5rem;
+    }
+}
