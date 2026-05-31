@@ -318,6 +318,83 @@ function App() {
         }
     }
 
+
+// Bài 5.4:
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+        confirmPassword: ""
+    });
+
+    const [errors, setErrors] = useState({
+        email: "",
+        password: "",
+        confirmPassword: ""
+    });
+
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    // HÀM XỬ LÝ KHI NGƯỜI DÙNG GÕ PHÍM (CHẠY REALTIME)
+    function handleChange(event) {
+        const { name, value } = event.target;
+        
+
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+
+
+        let errorMessage = "";
+
+        if (name === "email") {
+            if (!value.includes("@")) {
+                errorMessage = "❌ Email bắt buộc phải chứa ký tự '@'";
+            }
+        } 
+        else if (name === "password") {
+            if (value.length < 6) {
+                errorMessage = "❌ Mật khẩu phải có ít nhất 6 ký tự";
+            }
+        } 
+        else if (name === "confirmPassword") {
+
+            if (value !== formData.password) {
+                errorMessage = "❌ Mật khẩu xác nhận chưa khớp";
+            }
+        }
+
+
+        setErrors({
+            ...errors,
+            [name]: errorMessage
+        });
+    }
+
+    // HÀM XỬ LÝ KHI BẤM NÚT SUBMIT
+    function handleSubmit(event) {
+        event.preventDefault(); 
+        
+        if (
+            !formData.email.includes("@") || 
+            formData.password.length < 6 || 
+            formData.password !== formData.confirmPassword ||
+            formData.email === ""
+        ) {
+            alert("Vui lòng kiểm tra và sửa các lỗi đỏ trên form trước khi đăng ký!");
+            return;
+        }
+        
+        setIsSubmitted(true);
+    }
+
+    // HÀM RESET
+    function handleReset() {
+        setFormData({ email: "", password: "", confirmPassword: "" });
+        setErrors({ email: "", password: "", confirmPassword: "" });
+        setIsSubmitted(false);
+    }
+
     return (
     <div className="App">
       <UserProfile />
@@ -577,7 +654,9 @@ function App() {
                 outline: "none" 
             }}
         >
-            <h2 style={{ textAlign: "center" , color: "#2c3e50", fontWeight: "bold"}}>Bài 5.3: Keyboard Events</h2>
+            <h2 style={{ textAlign: "center", borderBottom: "2px solid #333", paddingBottom: "10px" ,color: "#333"}}>
+                Bài 5.3: Input Events
+            </h2>
             <p style={{ textAlign: "center", color: "gray" }}>
                 (Hãy click chuột vào vùng trắng bất kỳ trên trang web này một lần để bắt đầu nhận phím)
             </p>
@@ -626,6 +705,80 @@ function App() {
                     />
                 </div>
             </div>
+        </div>
+
+
+        <div style={{ padding: "30px", fontFamily: "sans-serif", maxWidth: "450px", margin: "auto" }}>
+            <h2 style={{ textAlign: "center", borderBottom: "2px solid #333", paddingBottom: "10px" }}>
+                Bài 5.4: Form Events
+            </h2>
+            <h2 style={{ textAlign: "center", color: "#ffffff" }}>Đăng ký tài khoản ShopTLU</h2>
+            
+            {!isSubmitted ? (
+                <form onSubmit={handleSubmit} style={{ background: "#f8f9fa", padding: "25px", borderRadius: "8px", border: "1px solid #ddd" }}>
+                    
+                    {/* INPUT EMAIL */}
+                    <div style={{ marginBottom: "20px" }}>
+                        <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Email:</label>
+                        <input 
+                            name="email"
+                            type="text"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="ví dụ: kiemtlu@example.com"
+                            style={{ width: "100%", padding: "10px", boxSizing: "border-box", borderRadius: "4px", border: "1px solid #ccc" }}
+                        />
+                        {/* Khu vực hiện lỗi realtime */}
+                        {errors.email && <div style={{ color: "#e74c3c", fontSize: "14px", marginTop: "5px" }}>{errors.email}</div>}
+                    </div>
+
+                    {/* INPUT PASSWORD */}
+                    <div style={{ marginBottom: "20px" }}>
+                        <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Mật khẩu:</label>
+                        <input 
+                            name="password"
+                            type="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            placeholder="Nhập ít nhất 6 ký tự"
+                            style={{ width: "100%", padding: "10px", boxSizing: "border-box", borderRadius: "4px", border: "1px solid #ccc" }}
+                        />
+                        {errors.password && <div style={{ color: "#e74c3c", fontSize: "14px", marginTop: "5px" }}>{errors.password}</div>}
+                    </div>
+
+                    {/* INPUT XÁC NHẬN PASSWORD */}
+                    <div style={{ marginBottom: "20px" }}>
+                        <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Xác nhận mật khẩu:</label>
+                        <input 
+                            name="confirmPassword"
+                            type="password"
+                            value={formData.confirmPassword}
+                            onChange={handleChange}
+                            placeholder="Nhập lại mật khẩu ở trên"
+                            style={{ width: "100%", padding: "10px", boxSizing: "border-box", borderRadius: "4px", border: "1px solid #ccc" }}
+                        />
+                        {errors.confirmPassword && <div style={{ color: "#e74c3c", fontSize: "14px", marginTop: "5px" }}>{errors.confirmPassword}</div>}
+                    </div>
+
+                    {/* NÚT SUBMIT */}
+                    <button 
+                        type="submit" 
+                        style={{ width: "100%", padding: "12px", background: "#3498db", color: "white", border: "none", borderRadius: "4px", fontSize: "16px", cursor: "pointer", fontWeight: "bold" }}
+                    >
+                        Tạo tài khoản
+                    </button>
+                </form>
+
+            ) : (
+                // MÀN HÌNH THÀNH CÔNG
+                <div style={{ background: "#d4edda", padding: "20px", borderRadius: "8px", textAlign: "center", border: "1px solid #c3e6cb" }}>
+                    <h3 style={{ color: "#155724" }}>🎉 Đăng ký thành công!</h3>
+                    <p>Chào mừng <strong>{formData.email}</strong> đã đến với hệ thống.</p>
+                    <button onClick={handleReset} style={{ marginTop: "15px", padding: "8px 16px", cursor: "pointer" }}>
+                        Quay lại
+                    </button>
+                </div>
+            )}
         </div>
     </div>
   );
