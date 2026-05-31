@@ -2,6 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
+import Header from './components/Header'
+import ProductCard from './components/ProductCard'
 import './App.css'
 
 //Bài 1:
@@ -173,6 +175,45 @@ function ListRendering() {
     ); 
 }
 function App() {
+
+//Tier3:
+  const products = [
+        { 
+            id: 1, 
+            name: "Laptop ASUS TUF Dash F15", 
+            price: "22.500.000đ", 
+            image: "https://placehold.co/200/000000/FFFFFF?text=ASUS+TUF" 
+        },
+        { 
+            id: 2, 
+            name: "Bàn phím cơ Bsun Taichi", 
+            price: "1.850.000đ", 
+            image: "https://placehold.co/200/FF0000/FFFFFF?text=Bsun+Taichi" 
+        },
+        { 
+            id: 3, 
+            name: "iPhone 16 Pro", 
+            price: "28.990.000đ", 
+            image: "https://placehold.co/200/CCCCCC/000000?text=iPhone+16+Pro" 
+        }
+    ];
+
+//Tier 4:
+// State Bài 4.1:
+  const [count, setCount] = useState(0);
+
+// State Bài 4.2:
+  const [email, setEmail] = useState("");
+    const maxChars = 100;
+
+// State Bài 4.3:
+  const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState("");
+
+  const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+  const [isLightOn, setIsLightOn] = useState(false);
+
+
   return (
     <div className="App">
       <UserProfile />
@@ -180,8 +221,118 @@ function App() {
       <SimpleVariables />
       <TerrnaryDemo />
       <ListRendering />
+
+      <div style={{ fontFamily: "sans-serif" }}>
+            <Header />
+
+            <main style={{ padding: "20px" }}>
+                <h2 style={{ textAlign: "center" }}>Sản phẩm nổi bật</h2>
+                
+                <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
+                    {/* Duyệt mảng và gọi ProductCard, đồng thời truyền Props */}
+                    {products.map(product => (
+                        <ProductCard 
+                            key={product.id}
+                            name={product.name}
+                            price={product.price}
+                            image={product.image}
+                        />
+                    ))}
+                </div>
+            </main>
+        </div>
+
+        <div style={{ padding: "20px", fontFamily: "sans-serif", maxWidth: "600px", margin: "auto" }}>
+            <h1 style={{ textAlign: "center" }}>Tier 4: Thực hành useState</h1>
+
+            <section style={{ marginBottom: "40px", padding: "20px", border: "1px solid #ccc", borderRadius: "8px" }}>
+                <h2>Bài 4.1 </h2>
+                <h3 style={{ color: count > 0 ? "green" : count < 0 ? "red" : "black" }}>
+                    Giá trị: {count} ({count > 0 ? "Số dương" : count < 0 ? "Số âm" : "Bằng 0"})
+                </h3>
+                
+                <div style={{ display: "flex", gap: "10px" }}>
+                    <button onClick={() => setCount(count + 1)}>+1</button>
+                    <button onClick={() => setCount(count - 1)}>-1</button>
+                    <button onClick={() => setCount(count + 5)}>+5</button> 
+                    <button onClick={() => setCount(0)}>Reset</button>
+                </div>
+            </section>
+
+            <section style={{ marginBottom: "40px", padding: "20px", border: "1px solid #ccc", borderRadius: "8px" }}>
+                <h2>Bài 4.2 & 4.3</h2>
+                
+                <div style={{ marginBottom: "15px" }}>
+                    <label style={{ display: "block", marginBottom: "5px" }}>Email:</label>
+                    <input 
+                        type="text"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Nhập email..."
+                        style={{ padding: "8px", width: "100%", boxSizing: "border-box" }}
+                        maxLength={maxChars}
+                    />
+                    <div style={{ display: "flex", justifyContent: "space-between", marginTop: "5px", fontSize: "14px" }}>
+                        <span style={{ color: email.includes("@") ? "green" : "red" }}>
+                            {email.includes("@") ? "✅ Email hợp lệ" : "❌ Thiếu ký tự '@'"}
+                        </span>
+                        <span style={{ color: email.length >= maxChars ? "red" : "gray" }}>
+                            {email.length}/{maxChars}
+                        </span>
+                    </div>
+                </div>
+
+                <div style={{ marginBottom: "15px" }}>
+                    <label style={{ display: "block", marginBottom: "5px" }}>Mật khẩu:</label>
+                    <div style={{ display: "flex", gap: "10px" }}>
+                        <input 
+                            type={showPassword ? "text" : "password"}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Nhập mật khẩu..."
+                            style={{ padding: "8px", flex: 1 }}
+                        />
+                        <button onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? "Ẩn" : "Hiện"}
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section style={{ marginBottom: "40px", padding: "20px", border: "1px solid #ccc", borderRadius: "8px" }}>
+                <h2>Bài 4.3</h2>
+                
+                <div style={{ marginBottom: "20px", border: "1px solid #eee" }}>
+                    <div 
+                        onClick={() => setIsAccordionOpen(!isAccordionOpen)}
+                        style={{ padding: "10px", background: "#f5f5f5", cursor: "pointer", fontWeight: "bold" }}
+                    >
+                        {isAccordionOpen ? "🔽 Click để thu gọn" : "▶️ Click để mở rộng (Accordion)"}
+                    </div>
+                    {isAccordionOpen && (
+                        <div style={{ padding: "15px", borderTop: "1px solid #eee" }}>
+                            Đây là nội dung bị ẩn bên trong Accordion. Kỹ thuật này dùng nhiều trong các trang FAQ (Câu hỏi thường gặp).
+                        </div>
+                    )}
+                </div>
+
+                <div>
+                    <h3>Bóng đèn</h3>
+                    <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+                        <span style={{ fontSize: "40px" }}>
+                            {isLightOn ? "💡 (Sáng)" : "🔌 (Tắt)"}
+                        </span>
+                        <button onClick={() => setIsLightOn(!isLightOn)}>
+                            Công tắc
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
     </div>
-  )
+    
+  );
 }
 
 export default App
